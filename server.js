@@ -101,6 +101,8 @@ function mainMenu() {
             case "Delete department":
                 deleteDept();
                 break;
+            case "EXIT":
+                exit();
         }
     });
 }
@@ -312,4 +314,80 @@ function updateEmpMngr() {
           mainMenu();
           });
       });
+  }
+
+
+  //////////////////// DELETE
+
+  //////// DELETE EMPLOYEE
+
+  function deleteEmp() {
+    inquirer
+    .prompt([
+      {
+      name: "firstName",
+      type: "input",
+      message: "Input first name."
+      },
+      {
+        name: "lastName",
+        type: "input",
+        message: "Input last name."
+      }
+    ])
+    .then(function(answer) {
+      var query = "DELETE FROM employee WHERE (first_name=? AND last_name=?)";
+      connection.query(query, [answer.firstName, answer.lastName], function(err, res) {
+        console.table("Employee TERMINATED!");
+        mainMenu();
+        });
+    });
+}
+
+  //////// DELETE ROLE
+
+  function deleteRole() {
+    inquirer
+    .prompt([
+      {
+      name: "role",
+      type: "input",
+      message: "Input role."
+      }
+    ])
+    .then(function(answer) {
+      var query = "DELETE FROM role WHERE (name=?)";
+      connection.query(query, [answer.role], function(err, res) {
+        console.table("Role DESTROYED!");
+        mainMenu();
+        });
+    });
+}
+
+  //////// DELETE DEPARTMENT
+
+  function deleteDept() {
+    inquirer
+    .prompt([
+      {
+      name: "dpt",
+      type: "input",
+      message: "Input department."
+      }
+    ])
+    .then(function(answer) {
+      var query = "DELETE FROM department WHERE (name=?)";
+      connection.query(query, [answer.dpt], function(err, res) {
+        console.table("Department DOWNSIZED!");
+        mainMenu();
+        });
+    });
+}
+
+////////////////////////////////////////////////////
+////// EXIT FROM APP
+
+function exit() {
+    console.log("Logged off");
+    connection.end();
   }
