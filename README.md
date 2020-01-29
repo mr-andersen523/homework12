@@ -25,5 +25,9 @@ A command-line application with the ability to view and manage departments, role
    3. Press `enter` 
 2. In your code editing terminal run `npm install`
 3. After installation, run `node server.js`
+   
+## Demo
+- - - -
+![gif alt](preview/emp-track.gif)
 
 
