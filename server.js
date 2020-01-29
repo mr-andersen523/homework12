@@ -8,7 +8,7 @@ const connectionProperties = {
     port: 3306,
     user: "root",
     password: "Ca523187!",
-    database: "employees_DB"
+    database: "employee_db"
 }
 
 const connection = mysql.createConnection(connectionProperties);
@@ -27,23 +27,24 @@ connection.connect((err) => {
         maxLength: '0',             // define how many character can be on one line
     });
 
-    start();
+    console.log("Welcome to the Employee Tracker Application!" + "\n");
+
+    mainMenu();
     
 });
 
-function start() {
+function mainMenu() {
 
     // QUESTIONS
     inquirer
     .prompt({
       name: "action",
       type: "rawlist",
-      message: "Welcome to your Employee Tracker! What would you like to do?",
+      message: "What would you like to do?",
       choices: [
         "View all employees",
-        "View all employees by role",
-        "View all employees by department",
-        "View all employees by manager",
+        "View all roles",
+        "View all departments",
         "Add employee",
         "Add role",
         "Add department",
@@ -52,10 +53,10 @@ function start() {
         "Delete employee",
         "Delete role",
         "Delete department",
-        "View department budgets"
+        "EXIT",
       ]
     })
-    .then((answer) => {
+    .then(function (answer) {
 
         // case switch
         switch (answer.action) {
@@ -63,14 +64,12 @@ function start() {
             case "View all employees":
                 viewAllEmp();
                 break;
-            case "View all employees by department":
-                viewAllEmpByDept();
+
+            case "View all roles":
+                viewAllRoles();
                 break;
-            case "View all employees by role":
-                viewAllEmpByRole();
-                break;
-            case "View all employees by manager":
-                viewAllEmpByMngr();
+            case "View all departments":
+                viewAllDept();
                 break;
 
             /////////////////
@@ -107,6 +106,51 @@ function start() {
 }
 
 ///////////////////////////QUERIES/////////////////////////////////////////
+
+/////   VIEW ///////
+
+function viewAllEmp() {
+    var query = "SELECT * FROM employee";
+    connection.query(query, function(err, res) {
+        if(err) return err;
+        console.log("\n");
+
+        // Display query results
+        console.table(res);
+
+        //Back to main menu
+        mainMenu();
+    });
+};
+
+function viewAllRoles() {
+    var query = "SELECT * FROM employee_db.role";
+    connection.query(query, function(err, res) {
+        if(err) return err;
+        console.log("\n");
+
+        // Display query results
+        console.table(res);
+
+        mainMenu();
+    });
+};
+
+function viewAllDept() {
+    var query = "SELECT * FROM employee_db.department;";
+    connection.query(query, function(err, res) {
+        if(err) return err;
+        console.log("\n");
+
+        // Display query results 
+        console.table(res);
+
+        mainMenu();
+    });
+};
+
+
+////// ADD ///////
 
 
 
