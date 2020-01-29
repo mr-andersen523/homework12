@@ -37,7 +37,7 @@ function start() {
     inquirer
     .prompt({
       name: "action",
-      type: "list",
+      type: "rawlist",
       message: "Welcome to your Employee Tracker! What would you like to do?",
       choices: [
         "View all employees",
