@@ -356,7 +356,7 @@ function updateEmpMngr() {
       }
     ])
     .then(function(answer) {
-      var query = "DELETE FROM role WHERE (name=?)";
+      var query = "DELETE FROM role WHERE (title=?)";
       connection.query(query, [answer.role], function(err, res) {
         console.table("Role DESTROYED!");
         mainMenu();
