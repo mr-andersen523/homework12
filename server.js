@@ -175,7 +175,7 @@ function addEmp() {
         {
           name: "manager_id",
           type: "number",
-          message: "Input the manager ID of the employee. **skip if null**"
+          message: "Input the manager ID of the employee. ** Leave blank if none **"
         }
       ])
 
@@ -281,3 +281,35 @@ function updateEmpRole() {
 
 
 //// UPDATE EMPLOYEE MANAGER
+
+function updateEmpMngr() {
+    inquirer
+      .prompt([
+        {
+        name: "firstName",
+        type: "input",
+        message: "Input first name of employee."
+        },
+        {
+          name: "lastName",
+          type: "input",
+          message: "Input last name of employee."
+        },
+        {
+          name: "manager_id",
+          type: "number",
+          message: "Input new manager id number of employee. ** Leave blank if none **"
+        }
+      ])
+      .then(function(answer) {
+        let manager_id = answer.manager_id;
+        if (!answer.manager_id) {
+          manager_id = null;
+        };
+        var query = "UPDATE employee SET manager_id=? WHERE (first_name=? AND last_name=?)";
+        connection.query(query, [answer.firstName, answer.lastName, manager_id], function(err, res) {
+          console.table("You updated the employee's manager number!");
+          mainMenu();
+          });
+      });
+  }
