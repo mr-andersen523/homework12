@@ -28,12 +28,12 @@ A command-line application with the ability to view and manage departments, role
    
 ## Demo
 - - - -
-![gif alt](preview/emp-track.gif)
+<img src="preview/emp-track.gif"  width="618" height="536">
 
 - - - -
 
 ![gif alt](preview/emp-track2.gif)
-<img src="preview/emp-track2.gif"  width="618" height="536">
+
 
 
 
