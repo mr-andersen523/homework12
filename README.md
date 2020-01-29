@@ -7,7 +7,7 @@ A command-line application with the ability to view and manage departments, role
 
 ## Preview
 - - - -
-![picture alt](previews/emp-tracker.png)
+![picture alt](preview/emp-tracker.png)
 
 ## Usage
 - - - -
@@ -19,7 +19,7 @@ A command-line application with the ability to view and manage departments, role
 
 ## Instructions
 - - - -
-1. Clone the respository to your working directory. 
+1. Clone the repository to your working directory. 
    1. Type `git clone` in your command line
    2. Then copy and paste `https://github.com/mr-andersen523/homework12.git`
    3. Press `enter` 
