@@ -33,6 +33,7 @@ A command-line application with the ability to view and manage departments, role
 - - - -
 
 ![gif alt](preview/emp-track2.gif)
+<img src="preview/emp-track2.gif"  width="618" height="536">
 
 
 
