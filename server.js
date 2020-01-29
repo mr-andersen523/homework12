@@ -150,8 +150,48 @@ function viewAllDept() {
 };
 
 
-////// ADD ///////
+////// ADD /////////////////////////
 
+///ADD EMPLOYEE
 
+function addEmp() {
+    inquirer
+      .prompt([
+        {
+        name: "first_name",
+        type: "input",
+        message: "Input employee's first name."
+        },
+        {
+          name: "last_name",
+          type: "input",
+          message: "Input employee's last name."
+        },
+        {
+          name: "role_id",
+          type: "input",
+          message: "Input employee's role ID."
+        },
+        {
+          name: "manager_id",
+          type: "number",
+          message: "Input the manager ID of the employee. **skip if null**"
+        }
+      ])
 
+      .then(function(answer) {
+        let manager_id = answer.manager_id;
+        if (!answer.manager_id) {
+          manager_id = null;
+        };
+        const query = "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)";
+        connection.query(query, [answer.first_name, answer.last_name, answer.role_id, manager_id], function(err, res) {
+          console.log("New employee added to database.");
+
+          mainMenu();
+        });
+      });
+    }
+
+//////// ADD ROLE
 
