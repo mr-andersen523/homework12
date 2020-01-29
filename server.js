@@ -150,7 +150,7 @@ function viewAllDept() {
 };
 
 
-////// ADD /////////////////////////
+////// ADD ////////////////
 
 ///ADD EMPLOYEE
 
@@ -186,7 +186,7 @@ function addEmp() {
         };
         const query = "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)";
         connection.query(query, [answer.first_name, answer.last_name, answer.role_id, manager_id], function(err, res) {
-          console.log("New employee added to database.");
+          console.log("You added a new employee!");
 
           mainMenu();
         });
@@ -195,3 +195,56 @@ function addEmp() {
 
 //////// ADD ROLE
 
+function addRole() {
+    inquirer
+      .prompt([
+        {
+        name: "role",
+        type: "input",
+        message: "Input name of new role/position."
+        },
+        {
+          name: "salary",
+          type: "input",
+          message: "Input the salary for this role."
+        },
+        {
+          name: "dpt_id",
+          type: "input",
+          message: "Input the department ID."
+        }
+      ])
+
+      .then(function(answer) {
+        const query = "INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)";
+        connection.query(query, [answer.role, answer.salary, answer.dpt_id], function(err, res) {
+          console.log("You added a new role!");
+
+          mainMenu();
+        });
+      });
+    }
+
+    ///////// ADD DEPARTMENT
+
+    function addDept() {
+        inquirer
+          .prompt([
+            {
+            name: "dpt",
+            type: "input",
+            message: "Input name of new department."
+            }
+          ])
+    
+          .then(function(answer) {
+            const query = "INSERT INTO department (title, salary, department_id) VALUES (?)";
+            connection.query(query, [answer.dpt], function(err, res) {
+              console.log("You added a new department!");
+    
+              mainMenu();
+            });
+          });
+        }
+
+/////////////////////
